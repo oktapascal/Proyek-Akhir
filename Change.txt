@@ -1,0 +1,20 @@
+	$('#posisi').change(function(){
+        var posisi = $('#posisi').val();
+        $.ajax({
+                 url: '<?php echo site_url('/Pegawai_Controller/GetStatusPosisi'); ?>',
+                 type: 'GET',
+                 data: {'posisi':posisi},
+                 dataType: 'json',
+                 success: function(respon){
+                    if(respon.conf == true)
+                    {
+                         $('#id_pegawai').prop('readonly', false);
+                         $('#id_pegawai').val('');
+                    }else{
+                    	  
+                        $('#id_pegawai').prop('readonly', true);
+                        $('#id_pegawai').val(respon.id);
+                    }
+                 }
+        })
+  	  });
